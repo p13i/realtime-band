@@ -9,14 +9,21 @@
 
     <Grid Background="#5C2D91">
         <StackPanel VerticalAlignment="Top">
-            <TextBlock Foreground="White" Text="Gravity Hero" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBlock x:Name="heroText" Foreground="White" Text="Intensity: 0G" FontSize="32" FontWeight="Light" HorizontalAlignment="Center" />
+            <TextBlock Foreground="White" Text="Sensor stream" FontSize="40" HorizontalAlignment="Center"
+                       VerticalAlignment="Top" />
+            <TextBlock x:Name="accel_X" Foreground="White" Text="X: null" FontSize="32" FontWeight="Light"
+                       HorizontalAlignment="Center" />
+            <TextBlock x:Name="accel_Y" Foreground="White" Text="Y: null" FontSize="32" FontWeight="Light"
+                       HorizontalAlignment="Center" />
+            <TextBlock x:Name="accel_Z" Foreground="White" Text="Z: null" FontSize="32" FontWeight="Light"
+                       HorizontalAlignment="Center" />
         </StackPanel>
         <StackPanel VerticalAlignment="Center">
-            <TextBlock x:Name="countText" Foreground="White" Text="3" FontSize="120" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <TextBlock x:Name="togoText" Foreground="White" Text="jumps to go: 10" FontSize="32" FontWeight="Light" HorizontalAlignment="Center" />
         </StackPanel>
-        <Button Foreground="White" FontSize="40" x:Name="start" Click="start_Click" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" FontFamily="Global User Interface">START</Button>
-        <MediaElement x:Name="media"  Visibility="Collapsed"/>
+        <Button Foreground="White" FontSize="40" x:Name="start" Click="start_Click" VerticalAlignment="Bottom"
+                HorizontalAlignment="Stretch" FontFamily="Global User Interface">
+            START
+        </Button>
+        <MediaElement x:Name="media" Visibility="Collapsed" />
     </Grid>
 </Page>

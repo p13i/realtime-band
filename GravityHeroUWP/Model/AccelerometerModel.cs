@@ -1,31 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Band.Sensors;
 using System.Threading;
-using Windows.UI.Xaml;
-using Windows.UI.Core;
-using System.Diagnostics;
 using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Microsoft.Band.Sensors;
 
 namespace GravityHero
 {
     /// <summary>
-    /// Kevin Ashley, Microsoft
+    ///     Kevin Ashley, Microsoft
     /// </summary>
     public class AccelerometerModel : ViewModel
     {
-        public delegate void ChangedHandler(double force);
+        public delegate void ChangedHandler(SensorReading force);
+
+        private SensorReading _last;
+        private SensorReading _prev;
+
+        private DateTimeOffset _startedTime = DateTimeOffset.MinValue;
+        private double lastTime;
+        private readonly double MIN = 0.4;
+        private double totalTime;
         public event ChangedHandler Changed;
 
-        DateTimeOffset _startedTime = DateTimeOffset.MinValue;
-        double totalTime = 0.0;
-        double lastTime = 0.0;
-        SensorReading _prev;
-        SensorReading _last;
-        double MIN = 0.4;
-      
         public void Init()
         {
             if (BandModel.IsConnected)
@@ -37,20 +33,25 @@ namespace GravityHero
             }
         }
 
-        void Accelerometer_ReadingChanged(object sender, BandSensorReadingEventArgs<IBandAccelerometerReading> e)
+        private void Accelerometer_ReadingChanged(object sender, BandSensorReadingEventArgs<IBandAccelerometerReading> e)
         {
             CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                 () =>
-           {
-               SensorReading reading = new SensorReading { X = e.SensorReading.AccelerationX, Y = e.SensorReading.AccelerationY, Z = e.SensorReading.AccelerationZ };
-               _prev = _last;
-               _last = reading;
-               Recalculate();
-            });
+                () =>
+                {
+                    var reading = new SensorReading
+                    {
+                        X = e.SensorReading.AccelerationX,
+                        Y = e.SensorReading.AccelerationY,
+                        Z = e.SensorReading.AccelerationZ
+                    };
+                    _prev = _last;
+                    _last = reading;
+                    Recalculate();
+                });
         }
 
 
-        void Recalculate()
+        private void Recalculate()
         {
             if (_last.Value <= MIN)
             {
@@ -68,11 +69,9 @@ namespace GravityHero
                     lastTime = 0.0;
                     _startedTime = DateTimeOffset.MinValue;
                     if (Changed != null)
-                        Changed(_last.Value);
+                        Changed(_last);
                 }
             }
         }
-
-        
     }
 }
