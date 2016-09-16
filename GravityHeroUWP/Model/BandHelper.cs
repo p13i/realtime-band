@@ -6,7 +6,7 @@ using Microsoft.Band.Notifications;
 
 namespace GravityHero
 {
-    public class BandModel : ViewModel
+    public class BandModel
     {
         public static IBandInfo SelectedBand { get; set; }
 

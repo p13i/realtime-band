@@ -15,7 +15,7 @@ namespace GravityHeroUWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private readonly AccelerometerModel _accelerometerModel = new AccelerometerModel();
+        private readonly Accelerometer _accelerometer = new Accelerometer();
 
         public MainPage()
         {
@@ -25,8 +25,8 @@ namespace GravityHeroUWP
         private async void start_Click(object sender, RoutedEventArgs e)
         {
             await BandModel.InitAsync();
-            _accelerometerModel.Init();
-            _accelerometerModel.Changed += _accelerometerModel_Changed;
+            _accelerometer.Init(TimeSpan.FromMilliseconds(16.0));
+            _accelerometer.Changed += _accelerometerModel_Changed;
         }
 
         private void _accelerometerModel_Changed(BandSensorReadingEventArgs<IBandAccelerometerReading> reading)

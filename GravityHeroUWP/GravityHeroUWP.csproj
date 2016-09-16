@@ -101,7 +101,7 @@
     </Compile>
     <Compile Include="Model\AccelerometerModel.cs" />
     <Compile Include="Model\BandHelper.cs" />
-    <Compile Include="Model\ViewModel.cs" />
+    <Compile Include="Model\ISensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
