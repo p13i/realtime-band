@@ -37,7 +37,7 @@ namespace GravityHero
                 {
                     BandClient = await BandClientManager.Instance.ConnectAsync(SelectedBand);
                     // connected!
-                    BandClient.NotificationManager.VibrateAsync(VibrationType.NotificationAlarm);
+                    await BandClient.NotificationManager.VibrateAsync(VibrationType.NotificationAlarm);
                 }
             }
             catch (Exception x)

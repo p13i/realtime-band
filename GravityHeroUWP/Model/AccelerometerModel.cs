@@ -11,7 +11,7 @@ namespace GravityHero
     /// </summary>
     public class AccelerometerModel : ViewModel
     {
-        public delegate void ChangedHandler(SensorReading force);
+        public delegate void ChangedHandler(BandSensorReadingEventArgs<IBandAccelerometerReading> reading);
         
         public event ChangedHandler Changed;
 
@@ -25,18 +25,11 @@ namespace GravityHero
             }
         }
 
-        private void Accelerometer_ReadingChanged(object sender, BandSensorReadingEventArgs<IBandAccelerometerReading> e)
+        private async void Accelerometer_ReadingChanged(object sender, BandSensorReadingEventArgs<IBandAccelerometerReading> reading)
         {
-            CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
                 () =>
                 {
-                    var reading = new SensorReading
-                    {
-                        X = e.SensorReading.AccelerationX,
-                        Y = e.SensorReading.AccelerationY,
-                        Z = e.SensorReading.AccelerationZ,
-                        Timestamp = e.SensorReading.Timestamp
-                    };
                     Changed?.Invoke(reading);
                 });
         }
