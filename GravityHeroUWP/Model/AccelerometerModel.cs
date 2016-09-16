@@ -12,14 +12,7 @@ namespace GravityHero
     public class AccelerometerModel : ViewModel
     {
         public delegate void ChangedHandler(SensorReading force);
-
-        private SensorReading _last;
-        private SensorReading _prev;
-
-        private DateTimeOffset _startedTime = DateTimeOffset.MinValue;
-        private double lastTime;
-        private readonly double MIN = 0.4;
-        private double totalTime;
+        
         public event ChangedHandler Changed;
 
         public void Init()
@@ -29,7 +22,6 @@ namespace GravityHero
                 BandModel.BandClient.SensorManager.Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
                 BandModel.BandClient.SensorManager.Accelerometer.ReportingInterval = TimeSpan.FromMilliseconds(16.0);
                 BandModel.BandClient.SensorManager.Accelerometer.StartReadingsAsync(new CancellationToken());
-                totalTime = 0.0;
             }
         }
 
@@ -42,36 +34,11 @@ namespace GravityHero
                     {
                         X = e.SensorReading.AccelerationX,
                         Y = e.SensorReading.AccelerationY,
-                        Z = e.SensorReading.AccelerationZ
+                        Z = e.SensorReading.AccelerationZ,
+                        Timestamp = e.SensorReading.Timestamp
                     };
-                    _prev = _last;
-                    _last = reading;
-                    Recalculate();
+                    Changed?.Invoke(reading);
                 });
-        }
-
-
-        private void Recalculate()
-        {
-            if (_last.Value <= MIN)
-            {
-                if (_startedTime > DateTimeOffset.MinValue)
-                    lastTime = (DateTimeOffset.Now - _startedTime).TotalSeconds;
-                else
-                    _startedTime = DateTimeOffset.Now;
-            }
-            else
-            {
-                if (_startedTime > DateTimeOffset.MinValue)
-                {
-                    lastTime = (DateTimeOffset.Now - _startedTime).TotalSeconds;
-                    totalTime += lastTime;
-                    lastTime = 0.0;
-                    _startedTime = DateTimeOffset.MinValue;
-                    if (Changed != null)
-                        Changed(_last);
-                }
-            }
         }
     }
 }
