@@ -99,11 +99,9 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\GyroscopeModel.cs" />
-    <Compile Include="Model\HeartRateModel.cs" />
-    <Compile Include="Model\AccelerometerModel.cs" />
-    <Compile Include="Model\BandHelper.cs" />
-    <Compile Include="Model\ISensor.cs" />
+    <Compile Include="Models\Sensors.cs" />
+    <Compile Include="Models\BandHelper.cs" />
+    <Compile Include="Models\Sensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

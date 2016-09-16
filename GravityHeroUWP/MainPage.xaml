@@ -1,39 +1,39 @@
 ﻿<Page
-    x:Class="GravityHeroUWP.MainPage"
+    x:Class="SensorStream.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:GravityHeroUWP"
+    xmlns:local="using:SensorStream"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Grid Background="#5C2D91">
         <StackPanel VerticalAlignment="Top">
-            <TextBlock Foreground="White" Text="Sensor stream" FontSize="40" HorizontalAlignment="Center"
+            <TextBlock Foreground="White" Text="Sensor stream" FontSize="40" HorizontalAlignment="Left"
                        VerticalAlignment="Top" />
             <TextBlock x:Name="accel_X" Foreground="White" Text="X: null" FontSize="32" FontWeight="Light"
-                       HorizontalAlignment="Center" />
+                       HorizontalAlignment="Left" />
             <TextBlock x:Name="accel_Y" Foreground="White" Text="Y: null" FontSize="32" FontWeight="Light"
-                       HorizontalAlignment="Center" />
+                       HorizontalAlignment="Left" />
             <TextBlock x:Name="accel_Z" Foreground="White" Text="Z: null" FontSize="32" FontWeight="Light"
-                       HorizontalAlignment="Center" />
+                       HorizontalAlignment="Left" />
             <TextBlock x:Name="heartRate" Foreground="White" Text="HR: null" FontSize="32" FontWeight="Light"
-                       HorizontalAlignment="Center" />
+                       HorizontalAlignment="Left" />
             <TextBlock x:Name="angular_X" Foreground="White" Text="AngularX: null" FontSize="32" FontWeight="Light"
-                       HorizontalAlignment="Center" />
+                       HorizontalAlignment="Left" />
             <TextBlock x:Name="angular_Y" Foreground="White" Text="AngularY: null" FontSize="32" FontWeight="Light"
-                       HorizontalAlignment="Center" />
+                       HorizontalAlignment="Left" />
             <TextBlock x:Name="angular_Z" Foreground="White" Text="AngularZ: null" FontSize="32" FontWeight="Light"
-                       HorizontalAlignment="Center" />
+                       HorizontalAlignment="Left" />
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom">
-        <Button Foreground="White" FontSize="40" x:Name="start" Click="start_Click"
+            <Button Foreground="White" FontSize="40" x:Name="start" Click="start_Click"
                 HorizontalAlignment="Stretch" FontFamily="Global User Interface">
-            START
-        </Button>
-        <Button Foreground="White" FontSize="40" x:Name="stop" Click="stop_Click"
+                START
+            </Button>
+            <Button Foreground="White" FontSize="40" x:Name="stop" Click="stop_Click"
                 HorizontalAlignment="Stretch" FontFamily="Global User Interface">
-            STOP
+                STOP
             </Button>
         </StackPanel>
         <MediaElement x:Name="media" Visibility="Collapsed" />

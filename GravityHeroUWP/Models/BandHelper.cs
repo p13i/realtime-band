@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Band;
 using Microsoft.Band.Notifications;
 
-namespace GravityHeroUWP.Model
+namespace SensorStream.Models
 {
     public class BandModel
     {
