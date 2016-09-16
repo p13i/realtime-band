@@ -18,6 +18,7 @@ namespace GravityHeroUWP
     {
         private readonly AccelerometerSensor _accelerometerSensor = new AccelerometerSensor();
         private readonly HeartRateSensor _heartRateSensor = new HeartRateSensor();
+        private readonly GyroscopeSensor _gyroscopeSensor = new GyroscopeSensor();
 
         public MainPage()
         {
@@ -35,11 +36,17 @@ namespace GravityHeroUWP
             _heartRateSensor.Init(BandModel.BandClient.SensorManager.HeartRate.SupportedReportingIntervals.First());
             _heartRateSensor.Changed += HeartRateSensorChanged;
             _heartRateSensor.Start();
+
+            _gyroscopeSensor.Init(BandModel.BandClient.SensorManager.Gyroscope.SupportedReportingIntervals.First());
+            _gyroscopeSensor.Changed += GyroscopeSensorChanged;
+            _gyroscopeSensor.Start();
         }
 
         private void stop_Click(object sender, RoutedEventArgs e)
         {
             _accelerometerSensor.Stop();
+            _heartRateSensor.Stop();
+            _gyroscopeSensor.Stop();
         }
 
         private void AccelerometerSensorModelChanged(BandSensorReadingEventArgs<IBandAccelerometerReading> reading)
@@ -47,6 +54,13 @@ namespace GravityHeroUWP
             accel_X.Text = string.Format("X: {0:F3}G", reading.SensorReading.AccelerationX);
             accel_Y.Text = string.Format("Y: {0:F3}G", reading.SensorReading.AccelerationY);
             accel_Z.Text = string.Format("Z: {0:F3}G", reading.SensorReading.AccelerationZ);
+        }
+
+        private void GyroscopeSensorChanged(BandSensorReadingEventArgs<IBandGyroscopeReading> reading)
+        {
+            angular_X.Text = string.Format("AngularX: {0:F3}G", reading.SensorReading.AngularVelocityX);
+            angular_Y.Text = string.Format("AngularY: {0:F3}G", reading.SensorReading.AngularVelocityX);
+            angular_Z.Text = string.Format("AngularZ: {0:F3}G", reading.SensorReading.AngularVelocityZ);
         }
 
         private void HeartRateSensorChanged(BandSensorReadingEventArgs<IBandHeartRateReading> reading)

@@ -19,6 +19,12 @@
                        HorizontalAlignment="Center" />
             <TextBlock x:Name="heartRate" Foreground="White" Text="HR: null" FontSize="32" FontWeight="Light"
                        HorizontalAlignment="Center" />
+            <TextBlock x:Name="angular_X" Foreground="White" Text="AngularX: null" FontSize="32" FontWeight="Light"
+                       HorizontalAlignment="Center" />
+            <TextBlock x:Name="angular_Y" Foreground="White" Text="AngularY: null" FontSize="32" FontWeight="Light"
+                       HorizontalAlignment="Center" />
+            <TextBlock x:Name="angular_Z" Foreground="White" Text="AngularZ: null" FontSize="32" FontWeight="Light"
+                       HorizontalAlignment="Center" />
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom">
         <Button Foreground="White" FontSize="40" x:Name="start" Click="start_Click"

@@ -99,6 +99,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\GyroscopeModel.cs" />
     <Compile Include="Model\HeartRateModel.cs" />
     <Compile Include="Model\AccelerometerModel.cs" />
     <Compile Include="Model\BandHelper.cs" />
