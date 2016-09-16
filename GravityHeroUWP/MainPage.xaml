@@ -17,13 +17,19 @@
                        HorizontalAlignment="Center" />
             <TextBlock x:Name="accel_Z" Foreground="White" Text="Z: null" FontSize="32" FontWeight="Light"
                        HorizontalAlignment="Center" />
+            <TextBlock x:Name="heartRate" Foreground="White" Text="HR: null" FontSize="32" FontWeight="Light"
+                       HorizontalAlignment="Center" />
         </StackPanel>
-        <StackPanel VerticalAlignment="Center">
-        </StackPanel>
-        <Button Foreground="White" FontSize="40" x:Name="start" Click="start_Click" VerticalAlignment="Bottom"
+        <StackPanel VerticalAlignment="Bottom">
+        <Button Foreground="White" FontSize="40" x:Name="start" Click="start_Click"
                 HorizontalAlignment="Stretch" FontFamily="Global User Interface">
             START
         </Button>
+        <Button Foreground="White" FontSize="40" x:Name="stop" Click="stop_Click"
+                HorizontalAlignment="Stretch" FontFamily="Global User Interface">
+            STOP
+            </Button>
+        </StackPanel>
         <MediaElement x:Name="media" Visibility="Collapsed" />
     </Grid>
 </Page>

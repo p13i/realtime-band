@@ -7,22 +7,22 @@ using Microsoft.Band.Sensors;
 
 namespace GravityHeroUWP.Model
 {
-    public class AccelerometerSensor : ISensor<IBandSensor<IBandAccelerometerReading>, IBandAccelerometerReading>
+    public class HeartRateSensor : ISensor<IBandSensor<IBandHeartRateReading>, IBandHeartRateReading>
     {
-        public delegate void ChangedHandler(BandSensorReadingEventArgs<IBandAccelerometerReading> reading);
+        public delegate void ChangedHandler(BandSensorReadingEventArgs<IBandHeartRateReading> reading);
         public event ChangedHandler Changed;
 
-        private int _readingCount = 0;
+        private int _readingCount;
 
         public void Init(TimeSpan reportingInterval)
         {
             if (!BandModel.IsConnected) return;
 
-            BandModel.BandClient.SensorManager.Accelerometer.ReadingChanged += ReadingChanged;
-            BandModel.BandClient.SensorManager.Accelerometer.ReportingInterval = reportingInterval;
+            BandModel.BandClient.SensorManager.HeartRate.ReadingChanged += ReadingChanged;
+            BandModel.BandClient.SensorManager.HeartRate.ReportingInterval = reportingInterval;
         }
 
-        public async void ReadingChanged(object sender, BandSensorReadingEventArgs<IBandAccelerometerReading> reading)
+        public async void ReadingChanged(object sender, BandSensorReadingEventArgs<IBandHeartRateReading> reading)
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -33,12 +33,12 @@ namespace GravityHeroUWP.Model
 
         public void Start()
         {
-            BandModel.BandClient.SensorManager.Accelerometer.StartReadingsAsync();
+            BandModel.BandClient.SensorManager.HeartRate.StartReadingsAsync();
         }
 
         public void Stop()
         {
-            BandModel.BandClient.SensorManager.Accelerometer.StopReadingsAsync();
+            BandModel.BandClient.SensorManager.HeartRate.StopReadingsAsync();
         }
 
         public int GetReadingCount()

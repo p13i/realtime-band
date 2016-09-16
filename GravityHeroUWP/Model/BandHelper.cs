@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Band;
 using Microsoft.Band.Notifications;
 
-namespace GravityHero
+namespace GravityHeroUWP.Model
 {
     public class BandModel
     {
@@ -13,10 +13,7 @@ namespace GravityHero
         public static IBandClient BandClient { get; set; }
 
 
-        public static bool IsConnected
-        {
-            get { return BandClient != null; }
-        }
+        public static bool IsConnected => BandClient != null;
 
         public static async Task FindDevicesAsync()
         {
@@ -25,22 +22,22 @@ namespace GravityHero
                 SelectedBand = bands[0]; // take the first band
         }
 
-        public static async Task InitAsync()
+        public static async Task Init()
         {
+            if (IsConnected)
+                return;
+
             try
             {
-                if (IsConnected)
-                    return;
-
                 await FindDevicesAsync();
                 if (SelectedBand != null)
                 {
+                    // Connect
                     BandClient = await BandClientManager.Instance.ConnectAsync(SelectedBand);
-                    // connected!
                     await BandClient.NotificationManager.VibrateAsync(VibrationType.NotificationAlarm);
                 }
             }
-            catch (Exception x)
+            catch (BandException x)
             {
                 Debug.WriteLine(x.Message);
             }

@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GravityHero;
+using GravityHeroUWP.Model;
 using Microsoft.Band.Sensors;
 
 namespace GravityHeroUWP.Model
@@ -12,5 +12,8 @@ namespace GravityHeroUWP.Model
     {
         void Init(TimeSpan reportingInterval);
         void ReadingChanged(object sender, BandSensorReadingEventArgs<TReading> readingEvent);
+        void Start();
+        void Stop();
+        int GetReadingCount();
     }
 }
