@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Windows.Media.SpeechSynthesis;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Microsoft.Band.Notifications;
 using Microsoft.Band.Sensors;
 using SensorStream.Models;
 using SensorStream.Models.Sensors;
@@ -16,8 +16,11 @@ namespace SensorStream
     public sealed partial class MainPage : Page
     {
         private AccelerometerSensor _accelerometerSensor;
-        private HeartRateSensor _heartRateSensor;
         private GyroscopeSensor _gyroscopeSensor;
+        private HeartRateSensor _heartRateSensor;
+
+        private List<IBandAccelerometerReading> _accelerometerReadings 
+            = new List<IBandAccelerometerReading>();
 
         public MainPage()
         {
@@ -68,14 +71,44 @@ namespace SensorStream
 
         private void GyroscopeSensorChanged(BandSensorReadingEventArgs<IBandGyroscopeReading> reading)
         {
-            angular_X.Text = string.Format("AngularX: {0:F3}{1}", reading.SensorReading.AngularVelocityX, GyroscopeSensor.Unit);
-            angular_Y.Text = string.Format("AngularY: {0:F3}{1}", reading.SensorReading.AngularVelocityY, GyroscopeSensor.Unit);
-            angular_Z.Text = string.Format("AngularZ: {0:F3}{1}", reading.SensorReading.AngularVelocityZ, GyroscopeSensor.Unit);
+            angular_X.Text = string.Format("AngularX: {0:F3}{1}", reading.SensorReading.AngularVelocityX,
+                GyroscopeSensor.Unit);
+            angular_Y.Text = string.Format("AngularY: {0:F3}{1}", reading.SensorReading.AngularVelocityY,
+                GyroscopeSensor.Unit);
+            angular_Z.Text = string.Format("AngularZ: {0:F3}{1}", reading.SensorReading.AngularVelocityZ,
+                GyroscopeSensor.Unit);
         }
 
         private void HeartRateSensorChanged(BandSensorReadingEventArgs<IBandHeartRateReading> reading)
         {
             heartRate.Text = string.Format("HR: {0:F3} bpm", reading.SensorReading.HeartRate);
+        }
+
+        private async void button_Click(object sender, RoutedEventArgs e)
+        {
+            var exportFilename = filename.Text;
+            var storageFolder =
+                ApplicationData.Current.LocalFolder;
+            var file =
+                await storageFolder.CreateFileAsync(exportFilename,
+                    CreationCollisionOption.ReplaceExisting);
+
+            filename.Text = "Loading data";
+            await FileIO.AppendTextAsync(file, "time,aX,aY,aZ\n");
+
+            for (int index = 0; index < _accelerometerReadings.Count; index++)
+            {
+                var reading = _accelerometerReadings[index];
+
+                filename.Text = string.Format("Loading data ({0})", index);
+
+                await
+                    FileIO.AppendTextAsync(file,
+                        $"{reading.Timestamp.ToUnixTimeMilliseconds()},{reading.AccelerationX},{reading.AccelerationY},{reading.AccelerationZ}\n");
+            }
+
+            _accelerometerReadings.Clear();
+            filename.Text = "Available here: " + file.Path;
         }
     }
 }

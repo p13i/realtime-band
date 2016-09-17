@@ -11,7 +11,7 @@ namespace SensorStream.Models
     {
         public class AccelerometerSensor : Sensor<IBandSensor<IBandAccelerometerReading>, IBandAccelerometerReading>
         {
-            public static string Unit = "G";
+            public static readonly string Unit = "G";
 
             public AccelerometerSensor() : base(BandModel.BandClient.SensorManager.Accelerometer)
             {
@@ -20,7 +20,7 @@ namespace SensorStream.Models
 
         public class HeartRateSensor : Sensor<IBandSensor<IBandHeartRateReading>, IBandHeartRateReading>
         {
-            public static string Unit = "BPM";
+            public static readonly string Unit = "BPM";
 
             public HeartRateSensor() : base(BandModel.BandClient.SensorManager.HeartRate)
             {
@@ -29,7 +29,7 @@ namespace SensorStream.Models
 
         public class GyroscopeSensor : Sensor<IBandSensor<IBandGyroscopeReading>, IBandGyroscopeReading>
         {
-            public static string Unit = "deg/sec";
+            public static readonly string Unit = "deg/sec";
             public GyroscopeSensor() : base(BandModel.BandClient.SensorManager.Gyroscope)
             {
             }

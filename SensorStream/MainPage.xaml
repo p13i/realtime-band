@@ -11,22 +11,29 @@
         <StackPanel VerticalAlignment="Top">
             <TextBlock Foreground="White" Text="Sensor stream" FontSize="40" HorizontalAlignment="Left"
                        VerticalAlignment="Top" />
-            <TextBlock x:Name="accel_X" Foreground="White" Text="X: null" FontSize="32" FontWeight="Light"
+            <TextBlock x:Name="accel_X" Foreground="White" Text="X: null" FontSize="20" FontWeight="Light"
                        HorizontalAlignment="Left" />
-            <TextBlock x:Name="accel_Y" Foreground="White" Text="Y: null" FontSize="32" FontWeight="Light"
+            <TextBlock x:Name="accel_Y" Foreground="White" Text="Y: null" FontSize="20" FontWeight="Light"
                        HorizontalAlignment="Left" />
-            <TextBlock x:Name="accel_Z" Foreground="White" Text="Z: null" FontSize="32" FontWeight="Light"
+            <TextBlock x:Name="accel_Z" Foreground="White" Text="Z: null" FontSize="20" FontWeight="Light"
                        HorizontalAlignment="Left" />
-            <TextBlock x:Name="heartRate" Foreground="White" Text="HR: null" FontSize="32" FontWeight="Light"
+            <TextBlock x:Name="heartRate" Foreground="White" Text="HR: null" FontSize="20" FontWeight="Light"
                        HorizontalAlignment="Left" />
-            <TextBlock x:Name="angular_X" Foreground="White" Text="AngularX: null" FontSize="32" FontWeight="Light"
+            <TextBlock x:Name="angular_X" Foreground="White" Text="AngularX: null" FontSize="20" FontWeight="Light"
                        HorizontalAlignment="Left" />
-            <TextBlock x:Name="angular_Y" Foreground="White" Text="AngularY: null" FontSize="32" FontWeight="Light"
+            <TextBlock x:Name="angular_Y" Foreground="White" Text="AngularY: null" FontSize="20" FontWeight="Light"
                        HorizontalAlignment="Left" />
-            <TextBlock x:Name="angular_Z" Foreground="White" Text="AngularZ: null" FontSize="32" FontWeight="Light"
+            <TextBlock x:Name="angular_Z" Foreground="White" Text="AngularZ: null" FontSize="20" FontWeight="Light"
                        HorizontalAlignment="Left" />
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom">
+            <TextBox x:Name="filename" TextWrapping="Wrap" Text="Full filename"/>
+            <Button x:Name="export"
+                    Foreground="White" FontSize="40"
+                    VerticalAlignment="Top" Click="button_Click"
+                    HorizontalAlignment="Stretch" FontFamily="Global User Interface">
+                EXPORT
+            </Button>
             <Button Foreground="White" FontSize="40" x:Name="start" Click="start_Click"
                 HorizontalAlignment="Stretch" FontFamily="Global User Interface">
                 START
@@ -36,6 +43,5 @@
                 STOP
             </Button>
         </StackPanel>
-        <MediaElement x:Name="media" Visibility="Collapsed" />
     </Grid>
 </Page>
