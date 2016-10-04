@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="58562c25-8e35-404d-9360-44458ea5e29a" Publisher="CN=kevinash" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="58562c25-8e35-404d-9360-44458ea5e29a" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="3b2fed6a-c964-4c5f-8325-0693a5e028e1" Publisher="CN=Pramod" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="3b2fed6a-c964-4c5f-8325-0693a5e028e1" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>GravityHeroUWP</DisplayName>
-    <PublisherDisplayName>kevinash</PublisherDisplayName>
+    <DisplayName>SensorStream</DisplayName>
+    <PublisherDisplayName>Pramod</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -14,8 +14,8 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="GravityHeroUWP.App">
-      <uap:VisualElements DisplayName="GravityHeroUWP" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="GravityHeroUWP" BackgroundColor="transparent">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="SensorStream.App">
+      <uap:VisualElements DisplayName="SensorStream" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="SensorStream" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />

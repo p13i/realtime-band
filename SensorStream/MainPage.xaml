@@ -1,13 +1,20 @@
 ﻿<Page
-    x:Class="SensorStream.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SensorStream"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Charts="using:Syncfusion.UI.Xaml.Charts"
+    x:Class="SensorStream.MainPage"
     mc:Ignorable="d">
 
+
     <Grid Background="#5C2D91">
+        <Grid.DataContext>
+
+            <local:UsersViewModel/>
+
+        </Grid.DataContext>
         <StackPanel VerticalAlignment="Top">
             <TextBlock Foreground="White" Text="Sensor stream" FontSize="40" HorizontalAlignment="Left"
                        VerticalAlignment="Top" />
@@ -25,23 +32,23 @@
                        HorizontalAlignment="Left" />
             <TextBlock x:Name="angular_Z" Foreground="White" Text="AngularZ: null" FontSize="20" FontWeight="Light"
                        HorizontalAlignment="Left" />
+
+            <Charts:SfLineSparkline  Interior="#4a4a4a" BorderThickness="1" 
+                        ItemsSource="{Binding PointList}" BorderBrush="DarkGray"
+                        YBindingPath="Y" Height="100">
+            </Charts:SfLineSparkline>
+
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom">
             <TextBox x:Name="filename" TextWrapping="Wrap" Text="Full filename"/>
             <Button x:Name="export"
                     Foreground="White" FontSize="40"
                     VerticalAlignment="Top" Click="button_Click"
-                    HorizontalAlignment="Stretch" FontFamily="Global User Interface">
-                EXPORT
-            </Button>
+                    HorizontalAlignment="Stretch" FontFamily="Global User Interface" Content="EXPORT"/>
             <Button Foreground="White" FontSize="40" x:Name="start" Click="start_Click"
-                HorizontalAlignment="Stretch" FontFamily="Global User Interface">
-                START
-            </Button>
+                HorizontalAlignment="Stretch" FontFamily="Global User Interface" Content="START"/>
             <Button Foreground="White" FontSize="40" x:Name="stop" Click="stop_Click"
-                HorizontalAlignment="Stretch" FontFamily="Global User Interface">
-                STOP
-            </Button>
+                HorizontalAlignment="Stretch" FontFamily="Global User Interface" Content="STOP"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.Storage;
 using Windows.UI.Xaml;
@@ -15,11 +16,12 @@ namespace SensorStream
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
         private AccelerometerSensor _accelerometerSensor;
         private GyroscopeSensor _gyroscopeSensor;
         private HeartRateSensor _heartRateSensor;
 
-        private List<IBandAccelerometerReading> _accelerometerReadings 
+        private List<IBandAccelerometerReading> _accelerometerReadings
             = new List<IBandAccelerometerReading>();
 
         public MainPage()
@@ -67,6 +69,8 @@ namespace SensorStream
             accel_X.Text = string.Format("X: {0:F3}G", reading.SensorReading.AccelerationX);
             accel_Y.Text = string.Format("Y: {0:F3}G", reading.SensorReading.AccelerationY);
             accel_Z.Text = string.Format("Z: {0:F3}G", reading.SensorReading.AccelerationZ);
+
+            UsersViewModel.PointList.Add(new Point { X = DateTime.Now.Second, Y = reading.SensorReading.AccelerationX });
         }
 
         private void GyroscopeSensorChanged(BandSensorReadingEventArgs<IBandGyroscopeReading> reading)
@@ -110,5 +114,35 @@ namespace SensorStream
             _accelerometerReadings.Clear();
             filename.Text = "Available here: " + file.Path;
         }
+    }
+
+    public class Point
+
+    {
+
+        public double X { get; set; }
+
+        public double Y { get; set; }
+
+    }
+
+    public class UsersViewModel
+
+    {
+
+        public UsersViewModel()
+
+        {
+            PointList = new Buffer.SlidingBuffer<Point>(100);
+        }
+
+        public static ObservableCollection<Point> PointList
+
+        {
+
+            get; set;
+
+        }
+
     }
 }
